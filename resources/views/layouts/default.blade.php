@@ -1,19 +1,15 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
    @include('includes.head')
 </head>
-<body>
-<div class="container">
-   <header class="row">
-       @include('includes.header')
-   </header>
+<body  id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<div>
+    @include('includes.header')
    <div id="main" class="row">
            @yield('content')
    </div>
-   <footer class="row">
-       @include('includes.footer')
-   </footer>
+   @include('includes.footer')
 </div>
 </body>
 </html>

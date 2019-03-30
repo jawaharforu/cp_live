@@ -16,7 +16,11 @@
 
 		    public function hook_before(&$postdata) {
 		        //This method will be execute before run the main process
-
+				if(scheduleCheck($postdata['doctor_id'], $postdata['schedule_date'])) {
+					$resp = response()->json(['api_status'=>0,'api_message'=>'Slot already booked']);
+					$resp->send();
+					exit;
+				}
 		    }
 
 		    public function hook_query(&$query) {

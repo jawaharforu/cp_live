@@ -15,8 +15,12 @@
 		
 
 		    public function hook_before(&$postdata) {
-		        //This method will be execute before run the main process
-
+				$exist = DB::table('cms_users')->where('email',$postdata['email'])->get()->first();
+				if($exist) {
+					$resp = response()->json(['api_status'=>0,'api_message'=>'Email already exist']);
+					$resp->send();
+					exit;
+				}
 		    }
 
 		    public function hook_query(&$query) {

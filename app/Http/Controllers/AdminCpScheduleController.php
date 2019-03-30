@@ -30,8 +30,8 @@
 
 			# START COLUMNS DO NOT REMOVE THIS LINE
 			$this->col = [];
-			$this->col[] = ["label"=>"Customer Id","name"=>"customer_id","join"=>"cms_users,name"];
-			$this->col[] = ["label"=>"Doctor Id","name"=>"doctor_id","join"=>"cms_users,name"];
+			$this->col[] = ["label"=>"Customer","name"=>"customer_id","join"=>"cms_users,name"];
+			$this->col[] = ["label"=>"Doctor","name"=>"doctor_id","join"=>"cms_users,name"];
 			$this->col[] = ["label"=>"Registred By","name"=>"registred_by"];
 			$this->col[] = ["label"=>"Schedule Date","name"=>"schedule_date"];
 			$this->col[] = ["label"=>"Schedule Duration Required","name"=>"schedule_duration_required"];
@@ -41,8 +41,8 @@
 
 			# START FORM DO NOT REMOVE THIS LINE
 			$this->form = [];
-			$this->form[] = ['label'=>'Customer Id','name'=>'customer_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'customer,id'];
-			$this->form[] = ['label'=>'Doctor Id','name'=>'doctor_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'doctor,id'];
+			$this->form[] = ['label'=>'Customer','name'=>'customer_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'cms_users,name'];
+			$this->form[] = ['label'=>'Doctor','name'=>'doctor_id','type'=>'select2','validation'=>'required|integer|min:0','width'=>'col-sm-10','datatable'=>'cms_users,name'];
 			$this->form[] = ['label'=>'Registred By','name'=>'registred_by','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Schedule Date','name'=>'schedule_date','type'=>'datetime','validation'=>'required|date_format:Y-m-d H:i:s','width'=>'col-sm-10'];
 			$this->form[] = ['label'=>'Schedule Duration Required','name'=>'schedule_duration_required','type'=>'number','validation'=>'required|integer|min:0','width'=>'col-sm-10'];
