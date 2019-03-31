@@ -1,15 +1,16 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
-   @include('includes.head')
+@include('includes.head')
 </head>
-<body  id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-<div>
-    @include('includes.header')
-   <div id="main" class="row">
-           @yield('content')
+<body>
+<div class="colorlib-loader"></div>
+	<div id="page">
+      @include('includes.header')
+      @yield('content')
+      @include('includes.footer')
    </div>
-   @include('includes.footer')
+   @include('includes.script')
 </div>
 </body>
 </html>
