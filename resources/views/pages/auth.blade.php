@@ -47,11 +47,12 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                 @if ( Session::get('message') != '' )
-                                    <div class='alert alert-warning'>
+                                    <div class='alert alert-danger'>
                                         {{ Session::get('message') }}
                                     </div>
                                 @endif
                                     <form id="login-form" action="/login" method="post" role="form" style="display: block;">
+                                    {{ csrf_field() }}
                                         <div class="form-group">
                                             <input type="text" name="email" id="email" tabindex="1" class="form-control" placeholder="Email" value="">
                                         </div>
@@ -76,6 +77,7 @@
                                         </div>
                                     </form>
                                     <form id="register-form" action="/register" method="post" role="form" style="display: none;">
+                                    {{ csrf_field() }}
                                         <div class="form-group">
                                             <input type="text" name="name" id="name" tabindex="1" class="form-control" placeholder="Name" value="" required>
                                         </div>
@@ -107,16 +109,10 @@
 			</div>
 		</div>
     </div>
+    @if ( Session::get('open') == 'reg' )
+        <script>
+            setTimeout(function(){ document.getElementById("register-form-link").click(); }, 3000);
+        </script>
+    @endif
     @stop
-    @push('bottom')
-    <script>
-        $(document).ready(function(){
-            @if ( Session::get('open') != 'reg' )
-            $("#register-form").delay(100).fadeIn(100);
-			$("#login-form").fadeOut(100);
-			$('#login-form-link').removeClass('active');
-			$('#register-form-link').addClass('active');
-            @endif
-        });
-    </script>
-    @endpush
+       
