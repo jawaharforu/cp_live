@@ -77,10 +77,10 @@
                                     </form>
                                     <form id="register-form" action="/register" method="post" role="form" style="display: none;">
                                         <div class="form-group">
-                                            <input type="text" name="name" id="name" tabindex="1" class="form-control" placeholder="Username" value="" required>
+                                            <input type="text" name="name" id="name" tabindex="1" class="form-control" placeholder="Name" value="" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="mobile" id="mobile" tabindex="1" class="form-control" placeholder="Email Address" value="" required>
+                                            <input type="text" name="mobile" id="mobile" tabindex="1" class="form-control" placeholder="Mobile" value="" required>
                                         </div>
                                         <div class="form-group">
                                             <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="" required>
