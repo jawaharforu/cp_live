@@ -89,7 +89,7 @@
                                             <input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password" required>
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" required>
+                                            <input type="password" name="password_confirmation" id="confirm-password" tabindex="2" class="form-control" placeholder="Confirm Password" required>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
@@ -108,4 +108,15 @@
 		</div>
     </div>
     @stop
-    
+    @push('bottom')
+    <script>
+        $(document).ready(function(){
+            @if ( Session::get('open') != 'reg' )
+            $("#register-form").delay(100).fadeIn(100);
+			$("#login-form").fadeOut(100);
+			$('#login-form-link').removeClass('active');
+			$('#register-form-link').addClass('active');
+            @endif
+        });
+    </script>
+    @endpush

@@ -214,6 +214,46 @@ class AdminCmsUsersController extends \crocodicstudio\crudbooster\controllers\CB
 
     public function postRegister()
     {
-        
+        $validator = Validator::make(Request::all(), [
+            'name' => 'required|min:3|max:50',
+            'mobile' => 'required|min:3|max:10',
+            'email' => 'required|email|unique:cms_users,email',
+            'password' => 'required|confirmed|min:6',
+        ]);
+        if ($validator->fails()) {
+            $message = $validator->errors()->all();
+            return redirect()->back()->with(['message' => implode(', ', $message), 'message_type' => 'danger', 'open' => 'reg']);
+        }
+        $user_data = [
+            'name' => Request::input("name"),
+            'mobile' => Request::input("mobile"),
+            'email' => Request::input("email"),
+            'password' => Hash::make(Request::input("password")),
+            'id_cms_privileges' => 2
+        ];
+        DB::table('cms_users')->insertGetId($user_data);
+        $users = DB::table(config('crudbooster.USER_TABLE'))->where("email", Request::input("email"))->first();
+        $priv = DB::table("cms_privileges")->where("id", $users->id_cms_privileges)->first();
+
+        $roles = DB::table('cms_privileges_roles')->where('id_cms_privileges', $users->id_cms_privileges)->join('cms_moduls', 'cms_moduls.id', '=', 'id_cms_moduls')->select('cms_moduls.name', 'cms_moduls.path', 'is_visible', 'is_create', 'is_read', 'is_edit', 'is_delete')->get();
+
+        $photo = ($users->photo) ? asset($users->photo) : asset('vendor/crudbooster/avatar.jpg');
+        Session::put('admin_id', $users->id);
+        Session::put('admin_is_superadmin', $priv->is_superadmin);
+        Session::put('admin_name', $users->name);
+        Session::put('admin_photo', $photo);
+        Session::put('admin_privileges_roles', $roles);
+        Session::put("admin_privileges", $users->id_cms_privileges);
+        Session::put('admin_privileges_name', $priv->name);
+        Session::put('admin_lock', 0);
+        Session::put('theme_color', $priv->theme_color);
+        Session::put("appname", CRUDBooster::getSetting('appname'));
+
+        CRUDBooster::insertLog(trans("crudbooster.log_login", ['email' => $users->email, 'ip' => Request::server('REMOTE_ADDR')]));
+
+        $cb_hook_session = new \App\Http\Controllers\CBHook;
+        $cb_hook_session->afterLogin();
+
+        return redirect('/');
     }
 }
