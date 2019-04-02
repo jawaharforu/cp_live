@@ -104,12 +104,12 @@ class AdminCmsUsersController extends \crocodicstudio\crudbooster\controllers\CB
 
     public function getLogin()
     {
-
+        $data = [];
         if (CRUDBooster::myId()) {
             return redirect(CRUDBooster::adminPath());
         }
 
-        $this->cbView('pages.auth');	
+        $this->cbView('pages.auth', $data);	
     }
 
     public function postLogin()
