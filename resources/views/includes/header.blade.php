@@ -32,28 +32,10 @@
 							<div class="menu-1">
 								<ul>
 									<li class="active"><a href="index.html">Home</a></li>
-									<li class="has-dropdown">
-										<a href="doctors.html">Doctors</a>
-										<ul class="dropdown">
-											<li><a href="doctors-single.html">Single Doctor</a></li>
-										</ul>
-									</li>
-									<li><a href="services.html">Services</a></li>
-									<li class="has-dropdown">
-										<a href="departments.html">Departments</a>
-										<ul class="dropdown">
-											<li><a href="departments-single.html">Plasetic Surgery Department</a></li>
-											<li><a href="departments-single.html">Dental Department</a></li>
-											<li><a href="departments-single.html">Psychological Department</a></li>
-										</ul>
-									</li>
-									<li class="has-dropdown">
-										<a href="blog.html">Blog</a>
-										<ul class="dropdown">
-											<li><a href="blog-single.html">Single Blog</a></li>
-										</ul>
-									</li>
-									<li><a href="contact.html">Contact</a></li>
+									<li><a href="#">Doctors</a></li>
+									<li><a href="#">Services</a></li>
+									<li><a href="#">Contact</a></li>
+									<li><a href="/login">Login / Register</a></li>
 								</ul>
 							</div>
 						</div>

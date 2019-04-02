@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('pages.home');
 });
+Route::post('forgot', ['uses' => 'AdminCmsUsersController@postForgot', 'as' => 'postForgot']);
+Route::get('forgot', ['uses' => 'AdminCmsUsersController@getForgot', 'as' => 'getForgot']);
+Route::post('register', ['uses' => 'AdminCmsUsersController@postRegister', 'as' => 'postRegister']);
+Route::get('register', ['uses' => 'AdminCmsUsersController@getRegister', 'as' => 'getRegister']);
+Route::get('logout', ['uses' => 'AdminCmsUsersController@getLogout', 'as' => 'getLogout']);
+Route::post('login', ['uses' => 'AdminCmsUsersController@postLogin', 'as' => 'postLogin']);
+Route::get('login', ['uses' => 'AdminCmsUsersController@getLogin', 'as' => 'getLogin']);
