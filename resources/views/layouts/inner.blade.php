@@ -7,6 +7,7 @@
 <div>
     <div class="colorlib-loader"></div>
     <div id="page">
+        @include('includes.header')
         @yield('content')
         @include('includes.footer')
     </div>

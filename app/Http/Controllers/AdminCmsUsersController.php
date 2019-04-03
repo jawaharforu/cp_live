@@ -122,7 +122,7 @@ class AdminCmsUsersController extends \crocodicstudio\crudbooster\controllers\CB
             return redirect(CRUDBooster::adminPath());
         }
 
-        $this->cbView('pages.auth', $data);	
+        $this->cbView( 'pages.login', $data );
     }
 
     public function postLogin()
@@ -152,11 +152,7 @@ class AdminCmsUsersController extends \crocodicstudio\crudbooster\controllers\CB
             $users = DB::table(config('crudbooster.USER_TABLE'))->where("email", $email)->first();
         }
         if ($users->id_cms_privileges == 2 && $users->is_verified != 1) {
-			$data =  [
-                'login_status'    =>  'Error',
-                'message'       =>  'User not verified',
-            ];
-            return response()->json($data,200);
+            return redirect()->back()->with(['message' => 'User not verified', 'message_type' => 'danger']);
 		} elseif (\Hash::check($password, $users->password)) {
             $priv = DB::table("cms_privileges")->where("id", $users->id_cms_privileges)->first();
 
@@ -179,7 +175,7 @@ class AdminCmsUsersController extends \crocodicstudio\crudbooster\controllers\CB
             $cb_hook_session = new \App\Http\Controllers\CBHook;
             $cb_hook_session->afterLogin();
 
-            return redirect(CRUDBooster::adminPath());
+            return redirect('dashboard');
         } else {
             return redirect()->route('getLogin')->with('message', trans('crudbooster.alert_password_wrong'));
         }
@@ -230,7 +226,7 @@ class AdminCmsUsersController extends \crocodicstudio\crudbooster\controllers\CB
         $data = [];
         $data['opne'] = "registration";
 
-        $this->cbView('pages.auth', $data);	
+        $this->cbView('pages.register', $data);	
     }
 
     public function postRegister()
@@ -243,7 +239,7 @@ class AdminCmsUsersController extends \crocodicstudio\crudbooster\controllers\CB
         ]);
         if ($validator->fails()) {
             $message = $validator->errors()->all();
-            return redirect()->back()->with(['message' => implode(', ', $message), 'message_type' => 'danger', 'open' => 'reg']);
+            return redirect()->back()->with(['message' => implode(', ', $message), 'message_type' => 'danger']);
         }
         $user_data = [
             'name' => Request::input("name"),
@@ -275,6 +271,6 @@ class AdminCmsUsersController extends \crocodicstudio\crudbooster\controllers\CB
         $cb_hook_session = new \App\Http\Controllers\CBHook;
         $cb_hook_session->afterLogin();
 
-        return redirect('/');
+        return redirect('dashboard');
     }
 }

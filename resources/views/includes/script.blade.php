@@ -1,27 +1,14 @@
-<div class="gototop js-top">
-    <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-</div>
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
 
-<!-- jQuery -->
-<script src="/js/jquery.min.js"></script>
-<!-- jQuery Easing -->
-<script src="/js/jquery.easing.1.3.js"></script>
-<!-- Bootstrap -->
-<script src="/js/bootstrap.min.js"></script>
-<!-- Waypoints -->
-<script src="/js/jquery.waypoints.min.js"></script>
-<!-- Stellar Parallax -->
-<script src="/js/jquery.stellar.min.js"></script>
-<!-- Carousel -->
-<script src="/js/owl.carousel.min.js"></script>
-<!-- Flexslider -->
-<script src="/js/jquery.flexslider-min.js"></script>
-<!-- countTo -->
-<script src="/js/jquery.countTo.js"></script>
-<!-- Magnific Popup -->
-<script src="/js/jquery.magnific-popup.min.js"></script>
-<script src="/js/magnific-popup-options.js"></script>
-<!-- Sticky Kit -->
-<script src="/js/sticky-kit.min.js"></script>
-<!-- Main -->
-<script src="/js/main.js"></script>
+<script src="{{asset('js/main.js')}}"></script>

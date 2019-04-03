@@ -21,3 +21,6 @@ Route::get('register', ['uses' => 'AdminCmsUsersController@getRegister', 'as' =>
 Route::get('logout', ['uses' => 'AdminCmsUsersController@getLogout', 'as' => 'getLogout']);
 Route::post('login', ['uses' => 'AdminCmsUsersController@postLogin', 'as' => 'postLogin']);
 Route::get('login', ['uses' => 'AdminCmsUsersController@getLogin', 'as' => 'getLogin']);
+Route::group( [ 'middleware' => [ 'web', '\App\Http\Middleware\CheckLoggedin' ]], function () {
+    Route::any('dashboard', 'MainController@getDashboard');
+});
