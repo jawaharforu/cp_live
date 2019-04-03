@@ -53,17 +53,28 @@ class AdminCmsUsersController extends \crocodicstudio\crudbooster\controllers\CB
 	}
 
 	public function postApiLogin(){
-        $validator = Validator::make(Request::all(), [
-            'email' => 'required|email|exists:'.config('crudbooster.USER_TABLE'),
-            'password' => 'required',
-        ]);
+        if(is_numeric(Request::input("email"))){
+            $validator = Validator::make(Request::all(), [
+                'mobile' => 'required|exists:'.config('crudbooster.USER_TABLE'),
+                'password' => 'required',
+            ]);
+        } else {
+            $validator = Validator::make(Request::all(), [
+                'email' => 'required|email|exists:'.config('crudbooster.USER_TABLE'),
+                'password' => 'required',
+            ]);
+        }
         if ($validator->fails()) {
             $message = $validator->errors()->all();
             return redirect()->back()->with(['message' => implode(', ', $message), 'message_type' => 'danger']);
         }
         $email = Request::input("email");
         $password = Request::input("password");
-		$users = DB::table(config('crudbooster.USER_TABLE'))->where("email", $email)->first();
+		if(is_numeric(Request::input("email"))){
+            $users = DB::table(config('crudbooster.USER_TABLE'))->where("mobile", $email)->first();
+        } else {
+            $users = DB::table(config('crudbooster.USER_TABLE'))->where("email", $email)->first();
+        }
 		if ($users->id_cms_privileges == 2 && $users->is_verified != 1) {
 			$data =  [
                 'login_status'    =>  'Error',
@@ -114,12 +125,17 @@ class AdminCmsUsersController extends \crocodicstudio\crudbooster\controllers\CB
 
     public function postLogin()
     {
-
-        $validator = Validator::make(Request::all(), [
-            'email' => 'required|email|exists:'.config('crudbooster.USER_TABLE'),
-            'password' => 'required',
-        ]);
-
+        if(is_numeric(Request::input("email"))){
+            $validator = Validator::make(Request::all(), [
+                'mobile' => 'required|exists:'.config('crudbooster.USER_TABLE'),
+                'password' => 'required',
+            ]);
+        } else {
+            $validator = Validator::make(Request::all(), [
+                'email' => 'required|email|exists:'.config('crudbooster.USER_TABLE'),
+                'password' => 'required',
+            ]);
+        }
         if ($validator->fails()) {
             $message = $validator->errors()->all();
 
@@ -128,8 +144,11 @@ class AdminCmsUsersController extends \crocodicstudio\crudbooster\controllers\CB
 
         $email = Request::input("email");
         $password = Request::input("password");
-        $users = DB::table(config('crudbooster.USER_TABLE'))->where("email", $email)->first();
-
+        if(is_numeric(Request::input("email"))){
+            $users = DB::table(config('crudbooster.USER_TABLE'))->where("mobile", $email)->first();
+        } else {
+            $users = DB::table(config('crudbooster.USER_TABLE'))->where("email", $email)->first();
+        }
         if ($users->id_cms_privileges == 2 && $users->is_verified != 1) {
 			$data =  [
                 'login_status'    =>  'Error',
