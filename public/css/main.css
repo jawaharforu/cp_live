@@ -129,6 +129,10 @@
     margin-bottom: 50px;
 }
 
+.flat-btn {
+    -webkit-appearance: none !important;
+}
+
 /* Sidebar Nav */
 
 .sidebar .wrapper {

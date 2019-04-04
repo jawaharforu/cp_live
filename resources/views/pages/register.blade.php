@@ -30,7 +30,8 @@
                                         </div>
                                         <input value="+91" id="country_code" name="country_code" type="hidden"/>
                                         <input type="number" id="mobile" name="mobile" class="form-control input-decor"
-                                               placeholder=""/>
+                                               placeholder="" maxlength="10"
+                                               oninput="this.value=this.value.slice(0,this.maxLength)"/>
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +69,9 @@
                         </div>
 
                         <div class="login-btn-group d-flex flex-column">
-                            <button type="button" onclick="smsLogin();" id="login-btn" class="btn btn-secondary">Submit</button>
+                            <button type="button" onclick="smsLogin();" id="login-btn"
+                                    class="btn btn-secondary flat-btn">Submit
+                            </button>
                         </div>
                     </div>
                 </form>

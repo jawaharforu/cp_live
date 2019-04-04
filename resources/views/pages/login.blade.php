@@ -36,7 +36,7 @@
                         </div>
                     </div>
                     <div class="login-btn-group d-flex flex-column w-100">
-                        <button id="login-btn" type="submit" class="btn btn-secondary">Login</button>
+                        <button id="login-btn" type="submit" class="btn btn-secondary flat-btn">Login</button>
                         <a href="{{ route('getForgot') }}" id="register-btn" class="btn btn-link">Forgot your password?</a>
                     </div>
                 </form>

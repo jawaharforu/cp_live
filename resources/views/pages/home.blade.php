@@ -30,10 +30,10 @@
                 </div>
 
                 <div class="login-btn-group d-flex flex-column">
-                    <a href="{{ route('getLogin') }}" id="login-btn" type="button" class="btn btn-secondary">
+                    <a href="{{ route('getLogin') }}" id="login-btn" type="button" class="btn btn-secondary flat-btn">
                         Login
                     </a>
-                    <a id="fb-btn" href="#" type="button" class="btn btn-secondary">Connect With Facebook</a>
+                    <a id="fb-btn" href="#" type="button" class="btn btn-secondary flat-btn">Connect With Facebook</a>
                     <a href="{{ route('getRegister') }}" id="register-btn" class="btn btn-link">
                         Have an account? Register
                     </a>
