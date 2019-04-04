@@ -30,7 +30,7 @@
                                         </div>
                                         <input value="+91" id="country_code" name="country_code" type="hidden"/>
                                         <input type="number" id="mobile" name="mobile" class="form-control input-decor"
-                                               placeholder="" maxlength="10"
+                                               placeholder="" maxlength="10" required
                                                oninput="this.value=this.value.slice(0,this.maxLength)"/>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                 <h6 class="card-title text-uppercase">Email</h6>
                                 <div class="w-50 m-auto">
                                     <input type="email" name="email" class="form-control input-decor"
-                                           placeholder="xyz@gmail.com"/>
+                                           placeholder="xyz@gmail.com" required/>
                                 </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                                 <h6 class="card-title text-uppercase">Create Password</h6>
                                 <div class="w-50 m-auto">
                                     <input type="password" name="password" class="form-control input-decor-default"
-                                           placeholder="********"/>
+                                           placeholder="********" required/>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
                                 <div class="w-50 m-auto">
                                     <input type="password" name="password_confirmation"
                                            class="form-control input-decor-default"
-                                           placeholder="********"/>
+                                           placeholder="********" required/>
                                 </div>
                             </div>
                         </div>

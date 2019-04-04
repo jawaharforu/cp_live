@@ -44,12 +44,15 @@ function loginCallback(response) {
 }
 
 function smsLogin() {
-    var countryCode = document.getElementById("country_code").value;
-    var phoneNumber = document.getElementById("mobile").value;
-    AccountKit.login(
-        'PHONE',
-        {countryCode: countryCode, phoneNumber: phoneNumber},
-        loginCallback
-    );
+    if ($('#registration_form').valid()) {
+        var countryCode = document.getElementById("country_code").value;
+        var phoneNumber = document.getElementById("mobile").value;
+        AccountKit.login(
+            'PHONE',
+            {countryCode: countryCode, phoneNumber: phoneNumber},
+            loginCallback
+        );
+    }
+
 }
 
