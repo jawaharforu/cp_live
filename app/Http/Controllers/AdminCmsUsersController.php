@@ -1,12 +1,15 @@
 <?php namespace App\Http\Controllers;
 
+use Carbon\Carbon;
+use crocodicstudio\crudbooster\controllers\CBController;
+use crocodicstudio\crudbooster\helpers\CRUDBooster;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Request;
 use Session;
-use Request;
-use DB;
-use CRUDbooster;
 use Illuminate\Support\Facades\Validator;
 
-class AdminCmsUsersController extends \crocodicstudio\crudbooster\controllers\CBController {
+class AdminCmsUsersController extends CBController {
 
 
 	public function cbInit() {
@@ -14,9 +17,9 @@ class AdminCmsUsersController extends \crocodicstudio\crudbooster\controllers\CB
 		$this->table               = 'cms_users';
 		$this->primary_key         = 'id';
 		$this->title_field         = "name";
-		$this->button_action_style = 'button_icon';	
-		$this->button_import 	   = FALSE;	
-		$this->button_export 	   = FALSE;	
+		$this->button_action_style = 'button_icon';
+		$this->button_import 	   = FALSE;
+		$this->button_export 	   = FALSE;
 		# END CONFIGURATION DO NOT REMOVE THIS LINE
 	
 		# START COLUMNS DO NOT REMOVE THIS LINE
@@ -25,33 +28,33 @@ class AdminCmsUsersController extends \crocodicstudio\crudbooster\controllers\CB
 		$this->col[] = array("label"=>"Email","name"=>"email");
 		$this->col[] = array("label"=>"Mobile","name"=>"mobile");
 		$this->col[] = array("label"=>"Privilege","name"=>"id_cms_privileges","join"=>"cms_privileges,name");
-		$this->col[] = array("label"=>"Photo","name"=>"photo","image"=>1);		
+		$this->col[] = array("label"=>"Photo","name"=>"photo","image"=>1);
 		# END COLUMNS DO NOT REMOVE THIS LINE
 
 		# START FORM DO NOT REMOVE THIS LINE
-		$this->form = array(); 		
+		$this->form = array();
 		$this->form[] = array("label"=>"Name","name"=>"name",'required'=>true,'validation'=>'required|alpha_spaces|min:3');
-		$this->form[] = array("label"=>"Email","name"=>"email",'required'=>true,'type'=>'email','validation'=>'required|email|unique:cms_users,email,'.CRUDBooster::getCurrentId());		
-		$this->form[] = array("label"=>"Mobile","name"=>"mobile",'required'=>true,'type'=>'text','validation'=>'required');		
-		$this->form[] = array("label"=>"Photo","name"=>"photo","type"=>"upload","help"=>"Recommended resolution is 200x200px",'required'=>true,'validation'=>'required|image|max:1000','resize_width'=>90,'resize_height'=>90);						
-		$this->form[] = array("label"=>"Privilege","name"=>"id_cms_privileges","type"=>"select","datatable"=>"cms_privileges,name",'required'=>true);						
+		$this->form[] = array("label"=>"Email","name"=>"email",'required'=>true,'type'=>'email','validation'=>'required|email|unique:cms_users,email,'.CRUDBooster::getCurrentId());
+		$this->form[] = array("label"=>"Mobile","name"=>"mobile",'required'=>true,'type'=>'text','validation'=>'required');
+		$this->form[] = array("label"=>"Photo","name"=>"photo","type"=>"upload","help"=>"Recommended resolution is 200x200px",'required'=>true,'validation'=>'required|image|max:1000','resize_width'=>90,'resize_height'=>90);
+		$this->form[] = array("label"=>"Privilege","name"=>"id_cms_privileges","type"=>"select","datatable"=>"cms_privileges,name",'required'=>true);
 		$this->form[] = array("label"=>"Password","name"=>"password","type"=>"password","help"=>"Please leave empty if not change");
 		# END FORM DO NOT REMOVE THIS LINE
-				
+		
 	}
 
-	public function getProfile() {			
+	public function getProfile() {
 
 		$this->button_addmore = FALSE;
 		$this->button_cancel  = FALSE;
-		$this->button_show    = FALSE;			
+		$this->button_show    = FALSE;
 		$this->button_add     = FALSE;
-		$this->button_delete  = FALSE;	
+		$this->button_delete  = FALSE;
 		$this->hide_form 	  = ['id_cms_privileges'];
 
 		$data['page_title'] = trans("crudbooster.label_button_profile");
-		$data['row']        = CRUDBooster::first('cms_users',CRUDBooster::myId());		
-		$this->cbView('crudbooster::default.form',$data);				
+		$data['row']        = CRUDBooster::first('cms_users',CRUDBooster::myId());
+		$this->cbView('crudbooster::default.form',$data);
 	}
 
 	public function postApiLogin(){
@@ -225,8 +228,9 @@ class AdminCmsUsersController extends \crocodicstudio\crudbooster\controllers\CB
         }
         $data = [];
         $data['opne'] = "registration";
+        $data['ip'] = Request::ip();
 
-        $this->cbView('pages.register', $data);	
+        $this->cbView('pages.register', $data);
     }
 
     public function postRegister()
@@ -241,36 +245,88 @@ class AdminCmsUsersController extends \crocodicstudio\crudbooster\controllers\CB
             $message = $validator->errors()->all();
             return redirect()->back()->with(['message' => implode(', ', $message), 'message_type' => 'danger']);
         }
-        $user_data = [
-            'name' => Request::input("name"),
-            'mobile' => Request::input("mobile"),
-            'email' => Request::input("email"),
-            'password' => Hash::make(Request::input("password")),
-            'id_cms_privileges' => 2
-        ];
-        DB::table('cms_users')->insertGetId($user_data);
-        $users = DB::table(config('crudbooster.USER_TABLE'))->where("email", Request::input("email"))->first();
-        $priv = DB::table("cms_privileges")->where("id", $users->id_cms_privileges)->first();
-
-        $roles = DB::table('cms_privileges_roles')->where('id_cms_privileges', $users->id_cms_privileges)->join('cms_moduls', 'cms_moduls.id', '=', 'id_cms_moduls')->select('cms_moduls.name', 'cms_moduls.path', 'is_visible', 'is_create', 'is_read', 'is_edit', 'is_delete')->get();
-
-        $photo = ($users->photo) ? asset($users->photo) : asset('vendor/crudbooster/avatar.jpg');
-        Session::put('admin_id', $users->id);
-        Session::put('admin_is_superadmin', $priv->is_superadmin);
-        Session::put('admin_name', $users->name);
-        Session::put('admin_photo', $photo);
-        Session::put('admin_privileges_roles', $roles);
-        Session::put("admin_privileges", $users->id_cms_privileges);
-        Session::put('admin_privileges_name', $priv->name);
-        Session::put('admin_lock', 0);
-        Session::put('theme_color', $priv->theme_color);
-        Session::put("appname", CRUDBooster::getSetting('appname'));
-
-        CRUDBooster::insertLog(trans("crudbooster.log_login", ['email' => $users->email, 'ip' => Request::server('REMOTE_ADDR')]));
-
-        $cb_hook_session = new \App\Http\Controllers\CBHook;
-        $cb_hook_session->afterLogin();
-
-        return redirect('dashboard');
+        
+        $user_verification = $this->postVerify(Request::all());
+        
+	    if ( ! isset( $user_verification['error'] ) ) {
+		    $user_data = [
+			    'name' => Request::input("name"),
+			    'mobile' => isset( $user_verification['details']['phone'] ) ? $user_verification['details']['phone']['number'] : Request::input( "mobile" ),
+			    'email' => Request::input("email"),
+			    'password' => Hash::make(Request::input("password")),
+			    'id_cms_privileges' => 2,
+			    'is_verified' => 1,
+			    'group_id'          => $user_verification['id'],
+			    'created_at'        => Carbon::now(),
+		    ];
+		    DB::table('cms_users')->insertGetId($user_data);
+		    $users = DB::table(config('crudbooster.USER_TABLE'))->where("email", Request::input("email"))->first();
+		    $priv = DB::table("cms_privileges")->where("id", $users->id_cms_privileges)->first();
+		
+		    $roles = DB::table('cms_privileges_roles')->where('id_cms_privileges', $users->id_cms_privileges)->join('cms_moduls', 'cms_moduls.id', '=', 'id_cms_moduls')->select('cms_moduls.name', 'cms_moduls.path', 'is_visible', 'is_create', 'is_read', 'is_edit', 'is_delete')->get();
+		
+		    $photo = ($users->photo) ? asset($users->photo) : asset('vendor/crudbooster/avatar.jpg');
+		    Session::put('admin_id', $users->id);
+		    Session::put('admin_is_superadmin', $priv->is_superadmin);
+		    Session::put('admin_name', $users->name);
+		    Session::put('admin_photo', $photo);
+		    Session::put('admin_privileges_roles', $roles);
+		    Session::put("admin_privileges", $users->id_cms_privileges);
+		    Session::put('admin_privileges_name', $priv->name);
+		    Session::put('admin_lock', 0);
+		    Session::put('theme_color', $priv->theme_color);
+		    Session::put("appname", CRUDBooster::getSetting('appname'));
+		
+		    CRUDBooster::insertLog(trans("crudbooster.log_login", ['email' => $users->email, 'ip' => Request::server('REMOTE_ADDR')]));
+		
+		    $cb_hook_session = new \App\Http\Controllers\CBHook;
+		    $cb_hook_session->afterLogin();
+		
+		    return redirect('dashboard');
+	    } else {
+		    return redirect()->back()->with( 'message', $user_verification['error']['message'] );
+	    }
+		
     }
+	
+	public function getLogout() {
+		$me = CRUDBooster::me();
+		CRUDBooster::insertLog( trans( "crudbooster.log_logout", [ 'email' => $me->email ] ) );
+		
+		Session::flush();
+		
+		return redirect()->route( 'getLogin' )->with( 'message', trans( "crudbooster.message_after_logout" ) );
+	}
+	
+	public function postVerify( $form_data ) {
+		
+		$app_id  = env('app_id');
+		$secret  = env('secret');
+		$version = env('version');
+		
+		function doCurl( $url ) {
+			$ch = curl_init();
+			curl_setopt( $ch, CURLOPT_URL, $url );
+			curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+			$data = json_decode( curl_exec( $ch ), true );
+			curl_close( $ch );
+			
+			return $data;
+		}
+		
+		$token_exchange_url = 'https://graph.accountkit.com/' . $version . '/access_token?' .
+		                      'grant_type=authorization_code' .
+		                      '&code=' . $form_data['code'] .
+		                      "&access_token=AA|$app_id|$secret";
+		
+		$data = doCurl( $token_exchange_url );
+		
+		$user_access_token = $data['access_token'];
+		$me_endpoint_url   = 'https://graph.accountkit.com/' . $version . '/me?' .
+		                     'access_token=' . $user_access_token;
+		$data['details']   = doCurl( $me_endpoint_url );
+		
+		return $data;
+	}
+	
 }

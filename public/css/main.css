@@ -1,7 +1,7 @@
 .title {
     text-align: center;
     position: relative;
-    margin-top: 100px;
+    margin-top: 30px;
 }
 
 .sub-header {
@@ -89,26 +89,17 @@
     color: #4d90fe;
 }
 
-/* .input-decor::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -7px;
-    height: 4px;
-    background-color: #000;
-    top: 65%;
-    height: 2px;
-    width: 90%;
-    left: 5%;
-    background-color: #000;
-} */
-
 .input-decor-default {
     border: 0;
     outline: 0;
     background: transparent;
     text-align: center;
     color: #4d90fe;
+}
+
+#cc-span {
+    border: none;
+    background-color: #f8f9fa;
 }
 
 /* Login Page */
@@ -245,7 +236,7 @@
     color: #ffc107;
 }
 
-#sidebar ul li.active>a, a[aria-expanded="true"] {
+#sidebar ul li.active > a, a[aria-expanded="true"] {
     color: #fff;
     background: #fde6bd;
 }
