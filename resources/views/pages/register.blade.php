@@ -42,7 +42,7 @@
                                 <h6 class="card-title text-uppercase">Email</h6>
                                 <div class="w-50 m-auto">
                                     <input type="email" name="email" class="form-control input-decor"
-                                           placeholder="xyz@gmail.com" required/>
+                                           placeholder="" required/>
                                 </div>
                             </div>
                         </div>
@@ -51,8 +51,8 @@
                             <div class="card-body">
                                 <h6 class="card-title text-uppercase">Create Password</h6>
                                 <div class="w-50 m-auto">
-                                    <input type="password" name="password" class="form-control input-decor-default"
-                                           placeholder="********" required/>
+                                    <input type="password" name="password" class="form-control input-decor"
+                                           placeholder="" required/>
                                 </div>
                             </div>
                         </div>
@@ -62,8 +62,8 @@
                                 <h6 class="card-title text-uppercase">Confirm Password</h6>
                                 <div class="w-50 m-auto">
                                     <input type="password" name="password_confirmation"
-                                           class="form-control input-decor-default"
-                                           placeholder="********" required/>
+                                           class="form-control input-decor"
+                                           placeholder="" required/>
                                 </div>
                             </div>
                         </div>
