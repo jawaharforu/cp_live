@@ -5,6 +5,7 @@
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
 <meta name="author" content=""/>
+<meta name="_token" content="{{ csrf_token() }}">
 
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 

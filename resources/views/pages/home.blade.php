@@ -5,7 +5,7 @@
         <div class="row justify-content-md-center">
             <div class="col-sm-auto">
                 <div class="title">
-                    <h3 class="header"><img src="/img/curepeople_logo.png" /></h3>
+                    <h3 class="header"><img src="/img/curepeople_logo.png"/></h3>
                     <p class="sub-header">preventive ayurveda</p>
                 </div>
 
@@ -33,8 +33,8 @@
                     <a href="{{ route('getLogin') }}" id="login-btn" type="button" class="btn btn-secondary">
                         Login
                     </a>
-                    <button id="fb-btn" type="button" class="btn btn-secondary">Connect With Facebook</button>
-                    <a href="{{ route('getRegister') }}" id="register-btn" type="button" class="btn btn-link">
+                    <a id="fb-btn" href="#" type="button" class="btn btn-secondary">Connect With Facebook</a>
+                    <a href="{{ route('getRegister') }}" id="register-btn" class="btn btn-link">
                         Have an account? Register
                     </a>
                 </div>
