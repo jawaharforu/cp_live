@@ -25,7 +25,7 @@ AccountKit_OnInteractive = function () {
             state: $('meta[name="_token"]').attr('content'),
             version: "v1.1",
             fbAppEventsEnabled: true,
-            redirect: window.location.host + "/register",m
+            redirect: window.location.host + "/register",
             debug: true
         }
     );
