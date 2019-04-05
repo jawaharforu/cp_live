@@ -69,7 +69,7 @@
                         </div>
 
                         <div class="login-btn-group d-flex flex-column">
-                            <button type="button" onclick="smsLogin();" id="login-btn"
+                            <button type="button" onclick="checkEmail();" id="login-btn"
                                     class="btn btn-secondary flat-btn">Submit
                             </button>
                         </div>

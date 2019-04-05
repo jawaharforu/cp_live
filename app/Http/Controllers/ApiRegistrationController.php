@@ -17,7 +17,7 @@ class ApiRegistrationController extends \crocodicstudio\crudbooster\controllers\
 	public function hook_before( &$postdata ) {
 		$exist = DB::table( 'cms_users' )->where( 'email', $postdata['email'] )->get()->first();
 		if ( $exist ) {
-			$resp = response()->json( [ 'api_status' => 0, 'api_message' => 'Email already exist' ] );
+			$resp = response()->json( [ 'api_status' => 0, 'api_message' => 'Email already exist' ], 409 );
 			$resp->send();
 			exit;
 		}
