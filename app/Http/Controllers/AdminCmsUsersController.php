@@ -109,8 +109,9 @@ class AdminCmsUsersController extends CBController {
 		if ( $validator->fails() ) {
 			$message = $validator->errors()->all();
 			
-			return redirect()->back()->with( [ 'message' => implode( ', ', $message ), 'message_type' => 'danger' ] );
+			return response()->json( [ 'message' => implode( ', ', $message ), 'message_type' => 'danger' ], 400 );
 		}
+		
 		$email    = Request::input( "email" );
 		$password = Request::input( "password" );
 		if ( is_numeric( Request::input( "email" ) ) ) {
@@ -291,7 +292,7 @@ class AdminCmsUsersController extends CBController {
 			return redirect()->back()->with( [ 'message' => implode( ', ', $message ), 'message_type' => 'danger' ] );
 		}
 		
-		$user_verification = $this->postVerify( Request::all() );
+		$user_verification = $this->postSmsVerify( Request::all() );
 		
 		if ( ! isset( $user_verification['error'] ) ) {
 			$user_data = [
@@ -345,7 +346,7 @@ class AdminCmsUsersController extends CBController {
 		return redirect()->route( 'getLogin' )->with( 'message', trans( "crudbooster.message_after_logout" ) );
 	}
 	
-	public function postVerify( $form_data ) {
+	public function postSmsVerify( $form_data ) {
 		
 		$app_id  = env( 'app_id' );
 		$secret  = env( 'secret' );
