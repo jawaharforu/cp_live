@@ -139,7 +139,7 @@ CREATE TABLE `cms_logs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `cms_logs` */
 
@@ -156,7 +156,9 @@ insert  into `cms_logs`(`id`,`ipaddress`,`useragent`,`url`,`description`,`detail
 (10,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0','http://localhost:8000/login','admin@admin.com login with IP Address 127.0.0.1','',1,'2019-04-03 15:31:47',NULL),
 (11,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0','http://localhost:8000/login','admin@admin.com login with IP Address 127.0.0.1','',1,'2019-04-05 15:55:23',NULL),
 (12,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0','http://localhost:8000/admin/users/add-save','Add New Data pasent at Users Management','',1,'2019-04-05 15:57:54',NULL),
-(13,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0','http://localhost:8000/admin/users/add-save','Add New Data doctor at Users Management','',1,'2019-04-05 15:58:31',NULL);
+(13,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0','http://localhost:8000/admin/users/add-save','Add New Data doctor at Users Management','',1,'2019-04-05 15:58:31',NULL),
+(14,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0','http://localhost:8000/login','pasent@gmail.com login with IP Address 127.0.0.1','',2,'2019-04-08 13:11:13',NULL),
+(15,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0','http://localhost:8000/login','pasent@gmail.com login with IP Address 127.0.0.1','',2,'2019-04-10 11:53:55',NULL);
 
 /*Table structure for table `cms_menus` */
 
@@ -412,8 +414,8 @@ CREATE TABLE `cms_users` (
 
 insert  into `cms_users`(`id`,`name`,`photo`,`email`,`password`,`id_cms_privileges`,`created_at`,`updated_at`,`status`,`is_verified`,`group_id`,`mobile`) values 
 (1,'Super Admin',NULL,'admin@admin.com','$2y$10$t7CoA1F8awcb4kf/nUdJsuVymjMyEQb/bm5ha96MUlfldg25nXn5y',1,'2018-08-28 04:49:21',NULL,'Active',NULL,NULL,NULL),
-(2,'pasent','uploads/1/2019-04/cloudonsolutions.png','pasent@gmail.com','$2y$10$iAefAgiFXztl6qL6U7Pjl.yHRYR3T6.j3ASVTa/LTNiqog7lURiji',2,'2019-04-05 15:57:53',NULL,NULL,NULL,NULL,'0987654321'),
-(3,'doctor','uploads/1/2019-04/cloudonsolutions.png','doctor@gmail.com','$2y$10$mKtq1pDHAiE1Ir7PDw9bZOYrDdei58HBYW3SF0AFQhNmwPliCc0V2',3,'2019-04-05 15:58:31',NULL,NULL,NULL,NULL,'9876543210');
+(2,'pasent','uploads/1/2019-04/cloudonsolutions.png','pasent@gmail.com','$2y$10$iAefAgiFXztl6qL6U7Pjl.yHRYR3T6.j3ASVTa/LTNiqog7lURiji',2,'2019-04-05 15:57:53',NULL,NULL,1,NULL,'0987654321'),
+(3,'doctor','uploads/1/2019-04/cloudonsolutions.png','doctor@gmail.com','$2y$10$mKtq1pDHAiE1Ir7PDw9bZOYrDdei58HBYW3SF0AFQhNmwPliCc0V2',3,'2019-04-05 15:58:31',NULL,NULL,1,NULL,'9876543210');
 
 /*Table structure for table `cp_report` */
 
@@ -454,12 +456,13 @@ CREATE TABLE `cp_schedule` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `cp_schedule` */
 
 insert  into `cp_schedule`(`id`,`customer_id`,`doctor_id`,`registred_by`,`schedule_date`,`schedule_duration_required`,`actual_consulting_duration`,`payment_stute`,`payment_reference`,`registration_mode`,`consulting_mode`,`consulting_status`,`consulting_remarks`,`created_at`,`updated_at`) values 
-(1,2,3,2,'2019-04-05 21:23:33',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-05 16:05:47',NULL);
+(1,2,3,2,'2019-04-05 21:23:33',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-05 16:05:47',NULL),
+(2,2,3,2,'2019-04-10 11:54:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-10 11:55:20','2019-04-10 11:55:20');
 
 /*Table structure for table `doctor_advice` */
 

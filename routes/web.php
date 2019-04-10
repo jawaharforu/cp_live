@@ -13,5 +13,8 @@
 	Route::post( 'login', [ 'uses' => 'AdminCmsUsersController@postLogin', 'as' => 'postLogin' ] );
 	Route::get( 'login', [ 'uses' => 'AdminCmsUsersController@getLogin', 'as' => 'getLogin' ] );
 	Route::group( [ 'middleware' => [ 'web', '\App\Http\Middleware\CheckLoggedin' ] ], function () {
-		Route::any( 'dashboard', 'MainController@getDashboard' );
+		Route::any( 'customer-dashboard', 'MainController@getDashboard' );
+		Route::get( 'book-appoinment', 'MainController@getBookAppoinment' );
+		Route::post( 'book-appoinment', 'MainController@postBookAppoinment' );
 	} );
+	

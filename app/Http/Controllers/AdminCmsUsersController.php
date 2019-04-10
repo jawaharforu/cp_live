@@ -224,7 +224,7 @@ class AdminCmsUsersController extends CBController {
 			$cb_hook_session = new \App\Http\Controllers\CBHook;
 			$cb_hook_session->afterLogin();
 			
-			return redirect( 'dashboard' );
+			return redirect( 'customer-dashboard' );
 		} else {
 			return redirect()->route( 'getLogin' )->with( 'message', trans( 'crudbooster.alert_password_wrong' ) );
 		}
@@ -330,7 +330,7 @@ class AdminCmsUsersController extends CBController {
 			$cb_hook_session = new \App\Http\Controllers\CBHook;
 			$cb_hook_session->afterLogin();
 			
-			return redirect( 'dashboard' );
+			return redirect( 'customer-dashboard' );
 		} else {
 			return redirect()->back()->with( 'message', $user_verification['error']['message'] );
 		}
