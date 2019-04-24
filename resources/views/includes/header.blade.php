@@ -12,8 +12,8 @@
                     <img src="https://via.placeholder.com/60"/>
                 </div>
                 <div class="details">
-                    <h5>B Misra</h5>
-                    <a href="#">View and edit profile</a>
+                    <h5>{{getUserDetails()->name}}</h5>
+                    <a href="/profile">View and edit profile</a>
                 </div>
             </div>
 
