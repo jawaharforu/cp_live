@@ -19,7 +19,7 @@
 
             <ul class="list-unstyled components">
                 <li>
-                    <a class="active" href="#">Live Consultation</a>
+                    <a class="active" href="/book-appoinment">Live Consultation</a>
                     <a href="#">Virtual Consultation - Free</a>
                     <a href="#">Home Remedies - Free</a>
                     <a href="#">Preventive Medicine</a>

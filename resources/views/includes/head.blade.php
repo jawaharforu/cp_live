@@ -21,5 +21,7 @@
         crossorigin="anonymous"></script>
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 <!-- Theme style  -->
 <link rel="stylesheet" href="{{asset('/css/main.css')}}">

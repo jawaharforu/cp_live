@@ -2,6 +2,7 @@
 <html>
 <head>
     @include('includes.head')
+    @stack('head')
 </head>
 <body>
 <div>
@@ -12,6 +13,7 @@
         @include('includes.footer')
     </div>
     @include('includes.script')
+    @stack('scripts')
 </div>
 </body>
 </html>
