@@ -256,7 +256,6 @@ class AdminCmsUsersController extends CBController {
 			    'password' => Hash::make(Request::input("password")),
 			    'id_cms_privileges' => 2,
 			    'is_verified' => 1,
-			    'group_id'          => $user_verification['id'],
 			    'created_at'        => Carbon::now(),
 		    ];
 		    DB::table('cms_users')->insertGetId($user_data);
