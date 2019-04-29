@@ -290,3 +290,17 @@ a[data-toggle="collapse"] {
     padding: 14px 20px;
     border-radius: 15px;
 }
+.btn-orng {
+    background-color: #ff9b37;
+}
+.schedule-date {
+    background-color: #cbcfd1;
+    border: #545b62 1px solid;
+    border-radius: 15px;
+    width: 50%;
+    padding: 3px 10px;
+    margin: auto;
+}
+.schedule-list {
+    text-align: center;
+}

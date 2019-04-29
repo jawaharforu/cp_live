@@ -12,6 +12,7 @@ class MainController extends Controller
     public function getDashboard()
     {
         $data = [];
+        $data['pasentSchedule'] = getPasentSchedule();
         return view('pages.main', $data);
     }
 
@@ -33,6 +34,7 @@ class MainController extends Controller
         if (scheduleCheck(Request::input("doctor_id"), Request::input("schedule_date")) > 0) {
             return redirect()->back()->with(['message' => 'Slot already booked', 'message_type' => 'danger']);
         } else {
+            $basicDetails = \Session::get('basic_details');
             DB::table('cp_schedule')->insert([
                 'customer_id' => CRUDBooster::myId(),
                 'doctor_id' => Request::input("doctor_id"),
@@ -40,8 +42,11 @@ class MainController extends Controller
                 'schedule_date' => date('Y-m-d h:i:s', strtotime(Request::input("schedule_date"))),
                 'created_at' => date("Y-m-d h:i:s"),
                 'updated_at' => date("Y-m-d h:i:s"),
+                'age' => $basicDetails['age'],
+                'sex' => $basicDetails['sex'],
+                'problem' => $basicDetails['problem'],
             ]);
-            return redirect()->back()->with(['message' => 'Slot booked', 'message_type' => 'success']);
+            return redirect('make-payment')->with(['message' => 'Slot booked', 'message_type' => 'success']);
         }
     }
 

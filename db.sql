@@ -139,7 +139,7 @@ CREATE TABLE `cms_logs` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 /*Data for the table `cms_logs` */
 
@@ -158,7 +158,9 @@ insert  into `cms_logs`(`id`,`ipaddress`,`useragent`,`url`,`description`,`detail
 (12,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0','http://localhost:8000/admin/users/add-save','Add New Data pasent at Users Management','',1,'2019-04-05 15:57:54',NULL),
 (13,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0','http://localhost:8000/admin/users/add-save','Add New Data doctor at Users Management','',1,'2019-04-05 15:58:31',NULL),
 (14,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0','http://localhost:8000/login','pasent@gmail.com login with IP Address 127.0.0.1','',2,'2019-04-08 13:11:13',NULL),
-(15,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0','http://localhost:8000/login','pasent@gmail.com login with IP Address 127.0.0.1','',2,'2019-04-10 11:53:55',NULL);
+(15,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0','http://localhost:8000/login','pasent@gmail.com login with IP Address 127.0.0.1','',2,'2019-04-10 11:53:55',NULL),
+(16,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0','http://localhost:8000/login','pasent@gmail.com login with IP Address 127.0.0.1','',2,'2019-04-26 22:15:27',NULL),
+(17,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:66.0) Gecko/20100101 Firefox/66.0','http://localhost:8000/login','pasent@gmail.com login with IP Address 127.0.0.1','',2,'2019-04-27 06:16:22',NULL);
 
 /*Table structure for table `cms_menus` */
 
@@ -429,7 +431,7 @@ CREATE TABLE `cp_report` (
   `customer_id` int(11) DEFAULT NULL,
   `doctor_id` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -455,14 +457,18 @@ CREATE TABLE `cp_schedule` (
   `consulting_remarks` text DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
+  `age` varchar(255) DEFAULT NULL,
+  `sex` varchar(255) DEFAULT NULL,
+  `problem` text DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `cp_schedule` */
 
-insert  into `cp_schedule`(`id`,`customer_id`,`doctor_id`,`registred_by`,`schedule_date`,`schedule_duration_required`,`actual_consulting_duration`,`payment_stute`,`payment_reference`,`registration_mode`,`consulting_mode`,`consulting_status`,`consulting_remarks`,`created_at`,`updated_at`) values 
-(1,2,3,2,'2019-04-05 21:23:33',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-05 16:05:47',NULL),
-(2,2,3,2,'2019-04-10 11:54:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-10 11:55:20','2019-04-10 11:55:20');
+insert  into `cp_schedule`(`id`,`customer_id`,`doctor_id`,`registred_by`,`schedule_date`,`schedule_duration_required`,`actual_consulting_duration`,`payment_stute`,`payment_reference`,`registration_mode`,`consulting_mode`,`consulting_status`,`consulting_remarks`,`created_at`,`updated_at`,`age`,`sex`,`problem`) values 
+(1,2,3,2,'2019-04-05 21:23:33',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-05 16:05:47',NULL,NULL,NULL,NULL),
+(2,2,3,2,'2019-04-10 11:54:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-10 11:55:20','2019-04-10 11:55:20',NULL,NULL,NULL),
+(3,2,3,2,'2019-04-27 10:47:00',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-26 10:47:57','2019-04-26 10:47:57','afsdfa','asdfa','asdf');
 
 /*Table structure for table `doctor_advice` */
 
@@ -474,7 +480,7 @@ CREATE TABLE `doctor_advice` (
   `remarks` text DEFAULT NULL,
   `advice_document` varchar(255) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -505,8 +511,8 @@ CREATE TABLE `payment` (
   `status` varchar(255) DEFAULT NULL,
   `remarks` varchar(255) DEFAULT NULL,
   `amount` varchar(255) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

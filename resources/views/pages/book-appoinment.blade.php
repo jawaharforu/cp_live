@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="box mb-3"><?php echo date('d-m-Y h:i a'); ?></div>
-                <input type="submit" class="btn btn-info mb-5 w-100" value="BOOK NOW">
+                <input type="submit" class="btn btn-orng mb-5 w-100" value="BOOK NOW">
             </form>
             </div>
             
